@@ -1,0 +1,14 @@
+{
+  "name": "postman-jenkins",
+  "version": "1.0.0",
+  "description": "project for postman test",
+
+  "scripts": {
+    "api-test-production": "neman run tests/PostmanTestrail.postman_collection.json"
+  },
+  "author": "surendar",
+  "license": "ISC",
+  "dependencies": {
+    "newman": "^5.2.4"
+  }
+}
