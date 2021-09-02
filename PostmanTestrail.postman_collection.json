@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "225b9c54-65be-4465-93bb-b82ad7b68f86",
+		"name": "PostmanTestrail",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get_useer_project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"C3 Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"const projects = pm.response.json();",
+							"console.log(projects)",
+							"",
+							"const userProject = projects.filter((project) => project.name = \"Inbox\");",
+							"const project = userProject[0];",
+							"pm.test(\"C3 Project founded\", () =>{",
+							"    pm.expect(project.name).to.be.eql(\"Inbox\");",
+							"});",
+							"",
+							"postman.setNextRequest(\"Update The Project\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessCode}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/rest/v1/projects",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Projecct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"C4 Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"const file = pm.response.json();",
+							"console.log(file)",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessCode}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Shopping List\"}"
+				},
+				"url": {
+					"raw": "{{url}}/rest/v1/projects",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update The Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"C5 Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessCode}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Things To Shopping\"}"
+				},
+				"url": {
+					"raw": "{{url}}/rest/v1/projects/2270875951",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"projects",
+						"2270875951"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"C6 Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessCode}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/rest/v1/projects/2270875951",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"projects",
+						"2270875951"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete The Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"C7 Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessCode}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/rest/v1/projects/2270497680",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"projects",
+						"2270497680"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "6136728fc1be161b60a1bc84d417bf440df9ff13",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://api.todoist.com"
+		},
+		{
+			"key": "accessCode",
+			"value": "6136728fc1be161b60a1bc84d417bf440df9ff13"
+		}
+	]
+}
